@@ -8,10 +8,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -30,15 +29,16 @@ public class MainActivity extends Activity {
     private Notification.Builder mBuilder;
     private NotificationManager notiManager;
 
-    // for Android Wear
     private NotificationCompat.Builder mBuilderCompat;
     private NotificationManagerCompat notiManagerCompat;
     private final int mNotificationCompatId 		= 10002;
 
-    Notification.BigPictureStyle mBigStyle;
+    private Notification.BigPictureStyle mBigStyle;
+    private Notification.BigTextStyle mBigTextStyle;
+    private NotificationCompat.BigTextStyle mCompacBigTextStyle;
 
-    String mCustomTitle = "Title with <font color='#ff0000'>Color</font> and <strong>Bold</strong>";
-    String mCustomText = "Text with <font color='#ff0000'>Color</font> and <strong>Bold</strong>";
+    private String mCustomTitle = "Title with <font color='#ff0000'>Color</font> and <strong>Bold</strong>";
+    private String mCustomText = "Text with <font color='#ff0000'>Color</font> and <strong>Bold</strong>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,11 @@ public class MainActivity extends Activity {
 
         mContext = this;
 
+
+        mInfomationView = (TextView)findViewById(R.id.info_view);
         bigIcon1 = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_big1);
         bigIcon2 = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ic_big2);
         bigPicture = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.expand_view_image);
-
-        mInfomationView = (TextView)findViewById(R.id.info_view);
 
         // Notification : Normal
         mBtn1 = (Button)findViewById(R.id.btn1);
@@ -74,11 +74,15 @@ public class MainActivity extends Activity {
         mBtn5.setOnClickListener(new BtnClickListener1());
 
         mBtn6 = (Button)findViewById(R.id.btn6);
-        mBtn6.setOnClickListener(new BtnClickListener2());
+        mBtn6.setOnClickListener(new BtnClickListener1());
+
+        mBtn7 = (Button)findViewById(R.id.btn7);
+        mBtn7.setOnClickListener(new BtnClickListener2());
 
 
     }
 
+    // System Default (API 19 Over)
     private class BtnClickListener1 implements View.OnClickListener {
 
         @TargetApi(19)
@@ -91,7 +95,7 @@ public class MainActivity extends Activity {
                     mBuilder.setContentTitle(getString(R.string.noti_title))                      // Notification 제목 (기본 View 에서)
                             .setContentText(getString(R.string.noti_context))           // Notification 내용
                             .setTicker(getString(R.string.noti_ticker))                 // Notify될때 Status bar에 노출되는 티커 문구
-                                    //.setSmallIcon(R.drawable.ic_stat_name)                      // Status bar noti Icon. 일반 아이콘을 쓰면 Noti ticker 출력 시 Ref폰에서 아이콘 짤림 (24pixel)
+                            .setSmallIcon(R.drawable.ic_stat_name)                      // Status bar noti Icon. 일반 아이콘을 쓰면 Noti ticker 출력 시 Ref폰에서 아이콘 짤림 (24pixel)
                             .setSmallIcon(R.mipmap.ic_launcher)                           // Noti Icon을 launcher 아이콘으로 대체해도 무방 (Nexus6P 마쉬맬로우 단말 기준
                             .setDefaults(Notification.DEFAULT_VIBRATE)                  // Noti 진동
                             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));    // 알람음.
@@ -111,23 +115,21 @@ public class MainActivity extends Activity {
 
                     // BigPicture Style 정의
                     mBigStyle = new Notification.BigPictureStyle();
-                    mBigStyle.setBigContentTitle(getString(R.string.noti_title_big));
-                    mBigStyle.setSummaryText(getString(R.string.noti_context_big));
+                    mBigStyle.setBigContentTitle(getString(R.string.noti_title_exp));
+                    mBigStyle.setSummaryText(getString(R.string.noti_context_summary));
                     mBigStyle.bigPicture(bigPicture);
 
                     // 축소되어서 보일때의 View
                     mBuilder = new Notification.Builder(mContext);
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
-                            //.setSmallIcon(R.drawable.ic_stat_name)
+                            .setSmallIcon(R.drawable.ic_stat_name)
                             .setSmallIcon(R.mipmap.ic_launcher)                           // Noti Icon을 launcher 아이콘으로 대체해도 무방 (Nexus6P 마쉬맬로우 단말 기준
                             .setTicker(getString(R.string.noti_ticker))
                             .setLargeIcon(bigIcon1)
                             .setDefaults(Notification.DEFAULT_VIBRATE)
                             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                             .setStyle(mBigStyle);  //확장된 View에서 사용할 스타일 설정(Big Picture)
-
-
                     notiManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
                     notiManager.notify(mNotificationId, mBuilder.build());
                     mInfomationView.setText(getString(R.string.noti_2_description));
@@ -150,7 +152,7 @@ public class MainActivity extends Activity {
                     // 축소되어서 보일때의 View
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
-                            //.setSmallIcon(R.drawable.ic_stat_name)
+                            .setSmallIcon(R.drawable.ic_stat_name)
                             .setSmallIcon(R.mipmap.ic_launcher)                           // Noti Icon을 launcher 아이콘으로 대체해도 무방 (Nexus6P 마쉬맬로우 단말 기준
                             .setTicker(getString(R.string.noti_ticker))
                             .setLargeIcon(bigIcon2)
@@ -234,27 +236,60 @@ public class MainActivity extends Activity {
                     notiManager.notify(mNotificationId, noti3);
                     mInfomationView.setText(getString(R.string.noti_5_description));
                     break;
+
+                case R.id.btn6 :
+                    mBigTextStyle = new Notification.BigTextStyle();
+                    mBigTextStyle.setBigContentTitle(getString(R.string.noti_title_exp));
+                    mBigTextStyle.setSummaryText(getString(R.string.noti_context_summary));
+                    mBigTextStyle.bigText(getString(R.string.noti_context_exp));
+
+                    mBuilder = new Notification.Builder(mContext);
+                    mBuilder.setContentTitle(getString(R.string.noti_title))
+                            .setContentText(getString(R.string.noti_context))
+                            //.setSmallIcon(R.drawable.ic_stat_name)
+                            .setSmallIcon(R.mipmap.ic_launcher)                           // Noti Icon을 launcher 아이콘으로 대체해도 무방 (Nexus6P 마쉬맬로우 단말 기준
+                            .setTicker(getString(R.string.noti_ticker))
+                            .setLargeIcon(bigIcon1)
+                            .setDefaults(Notification.DEFAULT_VIBRATE)
+                            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                            .setStyle(mBigTextStyle);  //확장된 View에서 사용할 스타일 설정(Big Picture)
+
+
+                    notiManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                    notiManager.notify(mNotificationId, mBuilder.build());
+                    mInfomationView.setText(getString(R.string.noti_6_description));
+                    break;
+
             }
         }
     }
 
+
+    // compact style Code
     private class BtnClickListener2 implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             // TODO Auto-generated method stub
             switch(v.getId()) {
-                case R.id.btn6 :
+                case R.id.btn7 :
+
+                    mCompacBigTextStyle = new NotificationCompat.BigTextStyle();
+                    mCompacBigTextStyle.setBigContentTitle(getString(R.string.noti_title_exp));
+                    mCompacBigTextStyle.setSummaryText(getString(R.string.noti_context_summary));
+                    mCompacBigTextStyle.bigText(getString(R.string.noti_context_exp));
+
 
                     mBuilderCompat = new NotificationCompat.Builder(mContext);
-                    mBuilderCompat.setContentTitle(mCustomTitle)
+                    mBuilderCompat.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))           // Notification 내용
                             .setTicker(getString(R.string.noti_ticker))                 // Notify될때 Status bar에 노출되는 티커 문구
-                            //.setSmallIcon(R.drawable.ic_stat_name)                      // Status bar noti Icon. 일반 아이콘을 쓰면 Noti ticker 출력 시 Ref폰에서 아이콘 짤림 (24pixel)
+                            .setSmallIcon(R.drawable.ic_stat_name)                      // Status bar noti Icon. 일반 아이콘을 쓰면 Noti ticker 출력 시 Ref폰에서 아이콘 짤림 (24pixel)
                             .setSmallIcon(R.mipmap.ic_launcher)                           // Noti Icon을 launcher 아이콘으로 대체해도 무방 (Nexus6P 마쉬맬로우 단말 기준
                             .setDefaults(Notification.DEFAULT_VIBRATE)                  // Noti 진동
                             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));    // 알람음.
                     mBuilderCompat.setLargeIcon(bigIcon1);
+                    mBuilderCompat.setStyle(mCompacBigTextStyle);
 
                     notiManagerCompat = NotificationManagerCompat.from(mContext);
                     notiManagerCompat.notify(mNotificationCompatId, mBuilderCompat.build());

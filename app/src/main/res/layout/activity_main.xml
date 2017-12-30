@@ -12,7 +12,15 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="#C00000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_sub1"
         android:layout_margin="5dp" />
+
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"
@@ -20,43 +28,55 @@
         android:textSize="16sp"
         android:text="@string/btn1" />
     <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:textSize="16sp"
-        android:text="@string/btn2" />
-     <Button
-        android:id="@+id/btn3"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:textSize="16sp"
-        android:text="@string/btn3" />
-     <Button
-        android:id="@+id/btn4"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:textSize="16sp"
-        android:text="@string/btn4" />
-     <Button
-        android:id="@+id/btn5"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:textSize="16sp"
-        android:text="@string/btn5" />
-     
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="5dp" />
-
-   <Button
         android:id="@+id/btn6"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textSize="16sp"
         android:text="@string/btn6"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="16sp"
+        android:text="@string/btn2" />
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="16sp"
+        android:text="@string/btn3" />
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="16sp"
+        android:text="@string/btn4" />
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="16sp"
+        android:text="@string/btn5" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_sub2"
+        android:layout_margin="5dp"/>
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="16sp"
+        android:text="@string/btn7"
+        android:visibility="visible"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="5dp" />
      <TextView 
          android:id="@+id/info_view"
          android:layout_width="match_parent"

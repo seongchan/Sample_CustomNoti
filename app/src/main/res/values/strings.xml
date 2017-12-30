@@ -1,23 +1,26 @@
 <resources>
     <string name="app_name">Notification Test</string>
     <string name="description">Notification 테스트 앱입니다.. </string>
+    <string name="description_sub1"> - Notification Style</string>
+    <string name="description_sub2"> - NotificationCompat Style</string>
     <string name="btn1">Normal View </string>
     <string name="btn2">BigPicture</string>
     <string name="btn3">Custom1(Bigview)</string>
     <string name="btn4">Custom2(BigView)</string>
     <string name="btn5">Custom3(Full Custom)</string>
-    <string name="btn6">compat USE(Normal View)</string>
-    <string name="btn7">compat USE(BigPicuture)</string>
-    <string name="noti_title">Normal View의 제목입니다.</string>
-    <string name="noti_context">Normal View의 내용입니다.</string>
-    <string name="noti_ticker">Ticker.........:)  :)  ..</string>
-    <string name="noti_title_big">Expand View의 제목입니다.</string>
-    <string name="noti_context_big">Expand View의 내용입니다.</string>
+    <string name="btn6">Normal Text Expand View</string>
+    <string name="btn7">Normal Text Expand View(Compat)</string>
+    <string name="noti_title">제목입니다</string>
+    <string name="noti_context">내용입니다</string>
+    <string name="noti_ticker">Notification Ticker.........:)..:)..)</string>
+    <string name="noti_title_exp">Expand View의 제목입니다.</string>
+    <string name="noti_context_exp">Expand View의 내용입니다.\nDoes your lorem ipsum text long for something a little meatier?\nGive our generator a try… it’s tasty!</string>
+    <string name="noti_context_summary">Expand View의 요약입니다</string>
     <string name="noti_1_description">Normal View 입니다.\nExpand View가 없는 유형입니다.</string>
     <string name="noti_2_description">BigPicture View입니다.\nExpand View가 있는 일반적인 유형입니다.</string>
     <string name="noti_3_description">Custom Expand View 입니다.\nSmall View는 유지하되, Expand View만 커스텀되어 있습니다.\nBigPicture와 유사하나 Title과 Context가 없습니다.</string>
     <string name="noti_4_description">Custom Expand View 입니다.\nSmall View는 유지하되, Expand View만 커스텀되어 있습니다.\n별도의 layout을 구성하는 경우입니다.</string>
     <string name="noti_5_description">Full Custom View 입니다.\nSmall, Expand View 모두 커스텀 한 경우입니다.</string>
-    <string name="noti_6_description">XXXcompat 클래스 사용예입니다.\nNormal View 예제입니다.</string>
-    <string name="noti_7_description">XXXcompat 클래스 사용예입니다.\nExpand View 예제입니다.</string>
+    <string name="noti_6_description">Normal Expand View 예제입니다.</string>
+    <string name="noti_7_description">Normal Expand View 예제입니다.(compat사용</string>
 </resources>

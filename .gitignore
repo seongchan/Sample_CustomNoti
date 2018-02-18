@@ -1,8 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+/.idea
 .DS_Store
 /build
 /captures
@@ -18,3 +17,4 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+

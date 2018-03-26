@@ -3,12 +3,14 @@ package com.clipandbooks.sample.custumnoti;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -30,19 +32,24 @@ public class MainActivity extends Activity {
     private Context mContext;
     private Bitmap bigIcon1, bigIcon2;
     private Bitmap bigPicture;
-    private final int mNotificationId_1             	= 10001;
-    private final int mNotificationId_2             	= 10002;
-    private final int mNotificationId_3             	= 10003;
-    private final int mNotificationId_4             	= 10004;
-    private final int mNotificationId_5             	= 10005;
-    private final int mNotificationId_6             	= 10006;
+    private final int mNotificationId_1     = 10001;
+    private final int mNotificationId_2     = 10002;
+    private final int mNotificationId_3     = 10003;
+    private final int mNotificationId_4     = 10004;
+    private final int mNotificationId_5     = 10005;
+    private final int mNotificationId_6     = 10006;
+
+    private final int mNotificationCompatId = 20002;
+    private final String mChannelId         = "default";
+    private final String mChannelName       = "defalut channel name";
+
 
     private Notification.Builder mBuilder;
     private NotificationManager notiManager;
 
     private NotificationCompat.Builder mBuilderCompat;
     private NotificationManagerCompat notiManagerCompat;
-    private final int mNotificationCompatId 		= 20002;
+
 
     Notification.BigPictureStyle mBigStyle;
     Notification.BigTextStyle mBigTextStyle;
@@ -96,6 +103,9 @@ public class MainActivity extends Activity {
 
         mBtn7 = (Button)findViewById(R.id.btn7);
         mBtn7.setOnClickListener(new BtnClickListener2());
+
+        initChannels(this);
+
     }
 
     private class BtnClickListener1 implements View.OnClickListener {
@@ -328,7 +338,9 @@ public class MainActivity extends Activity {
                     mCompacBigTextStyle.setSummaryText(getString(R.string.noti_context));
                     mCompacBigTextStyle.bigText(getString(R.string.noti_context_big));
 
-                    mBuilderCompat = new NotificationCompat.Builder(mContext);
+                    mBuilderCompat = new NotificationCompat.Builder(mContext,mChannelId);  //targetSDKVersion 26. appCompat-V7-26...
+                    //mBuilderCompat = new NotificationCompat.Builder(mContext);  //targetSDKVersion 26 under. appCompat-V7-25...
+
                     mBuilderCompat.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))           // Notification 내용
                             .setTicker(getString(R.string.noti_ticker))                 // Notify될때 Status bar에 노출되는 티커 문구
@@ -388,6 +400,19 @@ public class MainActivity extends Activity {
 
                     }
                 });
+    }
+
+
+    // com.android.support:appcompat-v7:26.1.0 (Notification Channel)
+    public void initChannels(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
+        }
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel(mChannelId,mChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(getString(R.string.app_name));
+        notificationManager.createNotificationChannel(channel);
     }
 
 }

@@ -116,7 +116,11 @@ public class MainActivity extends Activity {
             switch (v.getId()) {
                 case R.id.btn1 :
                     // Normal View (non-expand)
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
                     mBuilder.setContentTitle(getString(R.string.noti_title))        // Notification 제목 (기본 View 에서)
                             .setContentText(getString(R.string.noti_context))         // Notification 내용
                             .setTicker(getString(R.string.noti_ticker))               // Notify될때 Status bar에 노출되는 티커 문구
@@ -143,7 +147,11 @@ public class MainActivity extends Activity {
                     mBigTextStyle.setSummaryText(getString(R.string.noti_context));
                     mBigTextStyle.bigText(getString(R.string.noti_context_big));
 
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
                             //.setSmallIcon(R.drawable.ic_stat_name)
@@ -169,7 +177,11 @@ public class MainActivity extends Activity {
                     mBigStyle.bigPicture(bigPicture);
 
                     // 축소되어서 보일때의 View
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
                             //.setSmallIcon(R.drawable.ic_stat_name)
@@ -195,7 +207,11 @@ public class MainActivity extends Activity {
 //                    mBigStyle.bigPicture(bigPicture);
 
                     // 축소되어서 보일때의 View
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
                             //.setSmallIcon(R.drawable.ic_stat_name)
@@ -224,7 +240,11 @@ public class MainActivity extends Activity {
 
                 case R.id.btn4 :
                     // CustomView : Expand View에 이미지만 노출 (Expand View에 이미지만 노출)
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
 
                     /* 확장 커스텀 View
                      * Notification.bigContentView에 RemoteView를 붙이면 Expand  속성이 살아남. 이때 커스텀 뷰로 처리 가능
@@ -255,7 +275,11 @@ public class MainActivity extends Activity {
 
                 case R.id.btn5 :
                     // CustomView : Expand View가 커스텀 된 듯한 느낌. (layout을 별도로 꾸밈)
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
 
                     /* 확장 커스텀 View
                      * Notification.bigContentView에 RemoteView를 붙이면 Expand  속성이 살아남. 이때 커스텀 뷰로 처리 가능
@@ -287,7 +311,11 @@ public class MainActivity extends Activity {
 
                 case R.id.btn6 :
                     // Big Picture View Custuom (expand)
-                    mBuilder = new Notification.Builder(mContext);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        mBuilder = new Notification.Builder(mContext);
+                    } else {
+                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                    }
 
                     /* 확장 커스텀 View
                      * Notification.bigContentView에 RemoteView를 붙이면 Expand  속성이 살아남. 이때 커스텀 뷰로 처리 가능

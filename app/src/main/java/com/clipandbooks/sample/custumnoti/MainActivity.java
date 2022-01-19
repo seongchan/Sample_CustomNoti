@@ -1,5 +1,6 @@
 package com.clipandbooks.sample.custumnoti;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Notification;
@@ -12,14 +13,15 @@ import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -110,6 +112,7 @@ public class MainActivity extends Activity {
 
     private class BtnClickListener1 implements View.OnClickListener {
 
+        @SuppressLint("WrongConstant")
         @TargetApi(19)
         @Override
         public void onClick(View v) {

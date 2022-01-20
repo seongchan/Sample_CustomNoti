@@ -22,4 +22,7 @@
     <string name="noti_5_description">Full Custom View 입니다.\nSmall, Expand View 모두 커스텀 한 경우입니다.</string>
     <string name="noti_6_description">Normal Expand View 내용입니다.</string>
     <string name="noti_7_description">compat 클래스 사용예입니다.\nText Expand View 예제입니다.</string>
+
+    <string name="channel_default_name">일반</string>
+    <string name="channel_high_name">플로팅</string>
 </resources>

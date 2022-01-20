@@ -30,6 +30,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 public class MainActivity extends Activity {
 
     private Button mBtn1, mBtn2, mBtn3, mBtn3_1, mBtn4, mBtn5, mBtn6, mBtn7;
+    private Button mBtn8, mBtn9, mBtn10, mBtn3_2, mBtn11, mBtn12, mBtn13, mBtn14;
     private TextView mInfomationView;
     private Context mContext;
     private Bitmap bigIcon1, bigIcon2;
@@ -42,8 +43,9 @@ public class MainActivity extends Activity {
     private final int mNotificationId_6     = 10006;
 
     private final int mNotificationCompatId = 20002;
-    private final String mChannelId         = "default";
-    private final String mChannelName       = "defalut channel name";
+    private final String mChannelId_defalut      = "default";
+    private final String mChannelId_high         = "high";
+    //private final String mChannelName       = "kd;vs";
 
 
     private Notification.Builder mBuilder;
@@ -106,6 +108,37 @@ public class MainActivity extends Activity {
         mBtn7 = (Button)findViewById(R.id.btn7);
         mBtn7.setOnClickListener(new BtnClickListener2());
 
+        ////
+
+        mBtn8 = (Button)findViewById(R.id.btn8);
+        mBtn8.setOnClickListener(new BtnClickListener1());
+
+        // Notification : BigTextStyle
+        mBtn9 = (Button)findViewById(R.id.btn9);
+        mBtn9.setOnClickListener(new BtnClickListener1());
+
+        // Notification : BigPicture (local)
+        mBtn10 = (Button)findViewById(R.id.btn10);
+        mBtn10.setOnClickListener(new BtnClickListener1());
+
+        // Notification : BigPicture (external)
+        mBtn3_2 = (Button)findViewById(R.id.btn3_12);
+        mBtn3_2.setOnClickListener(new BtnClickListener1());
+
+        // Notification : Custom BigView 2
+        mBtn11 = (Button)findViewById(R.id.btn11);
+        mBtn11.setOnClickListener(new BtnClickListener1());
+
+        // Notification : Custom BigView 2
+        mBtn12 = (Button)findViewById(R.id.btn12);
+        mBtn12.setOnClickListener(new BtnClickListener1());
+
+        mBtn13 = (Button)findViewById(R.id.btn13);
+        mBtn6.setOnClickListener(new BtnClickListener1());
+
+        mBtn14 = (Button)findViewById(R.id.btn14);
+        mBtn14.setOnClickListener(new BtnClickListener2());
+
         initChannels(this);
 
     }
@@ -118,11 +151,16 @@ public class MainActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn1 :
+                case R.id.btn8 :
                     // Normal View (non-expand)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn1) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
                     mBuilder.setContentTitle(getString(R.string.noti_title))        // Notification 제목 (기본 View 에서)
                             .setContentText(getString(R.string.noti_context))         // Notification 내용
@@ -143,6 +181,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn2 :
+                case R.id.btn9 :
                     // Expand Text View
                     // BigTextStyle 정의
                     mBigTextStyle = new Notification.BigTextStyle();
@@ -153,7 +192,11 @@ public class MainActivity extends Activity {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn2) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
@@ -172,6 +215,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn3 :
+                case R.id.btn10:
                     // Expand Big Picture View (local)
                     // BigPicture Style 정의
                     mBigStyle = new Notification.BigPictureStyle();
@@ -183,7 +227,11 @@ public class MainActivity extends Activity {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn3) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
@@ -202,18 +250,16 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn3_1 :
-//                    // Expand Big Picture View (external)
-//                    // BigPicture Style 정의
-//                    mBigStyle = new Notification.BigPictureStyle();
-//                    mBigStyle.setBigContentTitle(getString(R.string.noti_title_big));
-//                    mBigStyle.setSummaryText(getString(R.string.noti_context_big));
-//                    mBigStyle.bigPicture(bigPicture);
-
+                case R.id.btn3_12 :
                     // 축소되어서 보일때의 View
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn3_1) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
                     mBuilder.setContentTitle(getString(R.string.noti_title))
                             .setContentText(getString(R.string.noti_context))
@@ -242,11 +288,16 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn4 :
+                case R.id.btn11 :
                     // CustomView : Expand View에 이미지만 노출 (Expand View에 이미지만 노출)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn4) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
 
                     /* 확장 커스텀 View
@@ -277,11 +328,16 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn5 :
+                case R.id.btn12 :
                     // CustomView : Expand View가 커스텀 된 듯한 느낌. (layout을 별도로 꾸밈)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn5) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
 
                     /* 확장 커스텀 View
@@ -313,11 +369,16 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.btn6 :
+                case R.id.btn13 :
                     // Big Picture View Custuom (expand)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                         mBuilder = new Notification.Builder(mContext);
                     } else {
-                        mBuilder = new Notification.Builder(mContext, mChannelId);
+                        if (v.getId() == R.id.btn6) {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_defalut);
+                        } else {
+                            mBuilder = new Notification.Builder(mContext, mChannelId_high);
+                        }
                     }
 
                     /* 확장 커스텀 View
@@ -363,13 +424,20 @@ public class MainActivity extends Activity {
             // TODO Auto-generated method stub
             switch(v.getId()) {
                 case R.id.btn7 :
+                case R.id.btn14 :
 
                     mCompacBigTextStyle = new NotificationCompat.BigTextStyle();
                     mCompacBigTextStyle.setBigContentTitle(getString(R.string.noti_title_big));
                     mCompacBigTextStyle.setSummaryText(getString(R.string.noti_context));
                     mCompacBigTextStyle.bigText(getString(R.string.noti_context_big));
 
-                    mBuilderCompat = new NotificationCompat.Builder(mContext,mChannelId);  //targetSDKVersion 26. appCompat-V7-26...
+                    if (v.getId() == R.id.btn14) {
+                        mBuilderCompat = new NotificationCompat.Builder(mContext, mChannelId_defalut);  //targetSDKVersion 26. appCompat-V7-26...
+                    } else {
+                        mBuilderCompat = new NotificationCompat.Builder(mContext,mChannelId_high);  //targetSDKVersion 26. appCompat-V7-26...
+                    }
+
+
                     //mBuilderCompat = new NotificationCompat.Builder(mContext);  //targetSDKVersion 26 under. appCompat-V7-25...
 
                     mBuilderCompat.setContentTitle(getString(R.string.noti_title))
@@ -434,16 +502,19 @@ public class MainActivity extends Activity {
     }
 
 
-    // com.android.support:appcompat-v7:26.1.0 (Notification Channel)
+    // AndroidX
     public void initChannels(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel channel = new NotificationChannel(mChannelId,mChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription(getString(R.string.app_name));
-        notificationManager.createNotificationChannel(channel);
+        NotificationChannel channel1 = new NotificationChannel(mChannelId_defalut, getString(R.string.channel_default_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel channel2 = new NotificationChannel(mChannelId_high, getString(R.string.channel_high_name), NotificationManager.IMPORTANCE_HIGH);
+        channel1.setDescription(getString(R.string.app_name));
+        channel2.setDescription(getString(R.string.app_name));
+        notificationManager.createNotificationChannel(channel1);
+        notificationManager.createNotificationChannel(channel2);
     }
 
 }

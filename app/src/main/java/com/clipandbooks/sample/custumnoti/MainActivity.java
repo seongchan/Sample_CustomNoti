@@ -431,7 +431,7 @@ public class MainActivity extends Activity {
                     mCompacBigTextStyle.setSummaryText(getString(R.string.noti_context));
                     mCompacBigTextStyle.bigText(getString(R.string.noti_context_big));
 
-                    if (v.getId() == R.id.btn14) {
+                    if (v.getId() == R.id.btn7) {
                         mBuilderCompat = new NotificationCompat.Builder(mContext, mChannelId_defalut);  //targetSDKVersion 26. appCompat-V7-26...
                     } else {
                         mBuilderCompat = new NotificationCompat.Builder(mContext,mChannelId_high);  //targetSDKVersion 26. appCompat-V7-26...

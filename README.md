@@ -10,3 +10,9 @@ TargetSdkVersion값이 21이상이면, 실제 smallIcon 이미지가 컬러이�
 ## 2018.03.27 ##
 Android 8에 Notification.Builder API 형식이 변경됨에 따라서 이에 대한 API Level 구분 반영추가되었습니다.
 (targetSDKVersion 26로 된 경우에 Notification에 나오지 않음)
+
+## 2022.01.20 ##
+간만에 코드(?) 업데이트 했습니다.
+Support 라이브러리에서 AndroidX로 마이그레이션(?)을 했고, 최신 gradle 버전에 맞춰서 빌드환경 수정했습니다.
+알림 우선순위를 높인 경우에 플로팅 알림이 뜨는 예제 코드 추가했습니다.
+별다른 작업은 아닌데, 작업할때 참고하시길!!
